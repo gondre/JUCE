@@ -1036,11 +1036,12 @@ public:
             {
                 auto value = inValue / getMaximumParameterValue (param);
 
-                param->setValue (value);
-
-                inParameterChangedCallback = true;
-                param->sendValueChangedMessageToListeners (value);
-
+                if (param->getValue() != value)
+                {
+                    param->setValue (value);
+                    inParameterChangedCallback = true;
+                    param->sendValueChangedMessageToListeners (value);
+                }
                 return noErr;
             }
         }

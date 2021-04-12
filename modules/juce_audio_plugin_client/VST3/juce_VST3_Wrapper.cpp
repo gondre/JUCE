@@ -2650,14 +2650,16 @@ public:
                     else
                    #endif
                     {
-                        auto floatValue = static_cast<float> (value);
-
                         if (auto* param = comPluginInstance->getParamForVSTParamID (vstParamID))
                         {
-                            param->setValue (floatValue);
+                            auto floatValue = static_cast<float> (value);
 
-                            inParameterChangedCallback = true;
-                            param->sendValueChangedMessageToListeners (floatValue);
+                            if (floatValue != param->getValue())
+                            {
+                                param->setValue (floatValue);
+                                inParameterChangedCallback = true;
+                                param->sendValueChangedMessageToListeners (floatValue);
+                            }
                         }
                     }
                 }
