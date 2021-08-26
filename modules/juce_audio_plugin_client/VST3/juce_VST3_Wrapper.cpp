@@ -3105,6 +3105,7 @@ public:
                                 const InParameterChangedCallbackSetter scopedSetter { inParameterChangedCallback };
                                 param->sendValueChangedMessageToListeners (floatValue);
                             }
+                        }
                     }
                 }
             }
