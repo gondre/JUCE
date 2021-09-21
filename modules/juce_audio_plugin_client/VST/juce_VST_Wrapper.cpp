@@ -704,10 +704,12 @@ public:
     {
         if (auto* param = juceParameters.getParamForIndex (index))
         {
-            param->setValue (value);
-
-            inParameterChangedCallback = true;
-            param->sendValueChangedMessageToListeners (value);
+            if (value != param->getValue())
+            {
+                param->setValue (value);
+                inParameterChangedCallback = true;
+                param->sendValueChangedMessageToListeners (value);
+            }
         }
     }
 
