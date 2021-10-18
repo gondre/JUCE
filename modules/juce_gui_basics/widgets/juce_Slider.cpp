@@ -193,7 +193,8 @@ public:
 
             // (need to do this comparison because the Value will use equalsWithSameType to compare
             // the new and old values, so will generate unwanted change events if the type changes)
-            if (currentValue != newValue)
+            //if (currentValue != newValue) // fails with String Values
+            if ((double) currentValue.getValue() != newValue)
                 currentValue = newValue;
 
             updateText();
